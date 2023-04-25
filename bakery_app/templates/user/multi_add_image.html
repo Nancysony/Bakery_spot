@@ -1,0 +1,36 @@
+{% extends 'user/user_base.html' %}
+{% block content %}
+{% load static %}
+
+<div class="container justify-content-center m-5">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">               
+
+            <div class="card m-5">
+                
+                    {{ po.product_name }}
+                <form method="POST" action="" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    
+                    <div class="form-group mx-5 my-3">
+                        <label>Upload Image</label>
+                        <input type="file" name="images" multiple class="form-control-file">
+                    </div>
+                    <button type="submit" class="btn btn-success btn-sm mx-5 my-3" id="save">ADD MULTIPLE IMAGES </button>
+                    <input type="button" value="PREVIOUS PAGE" class="btn btn-info"onclick="javascript:history.go(-1);">
+                  </form>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+<script>
+    document.getElementById('save').addEventListener('click', function () {
+    Swal.fire(
+        'SUCCESS',
+        'Multiple images saved'
+    )
+});
+</script>
+{% endblock %}

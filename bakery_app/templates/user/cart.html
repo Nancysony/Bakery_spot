@@ -1,0 +1,64 @@
+{% extends 'user/user_base.html' %}
+{% block content %}
+<div class="nav-item" style="font-size:30px;float: right; ">
+  <a class="nav-link fa fa-shopping-cart" href="{% url 'load_cart' %}"id="a1"><p id="count"style="font-size:15px; ">{{ cr }}</p></a>
+</div>
+<h1 style="text-align: center;">CART ITEMS</h1>
+
+{% for i in car1 %}
+<div class="container">
+    
+    <div class="card mb-4" style="max-width: 540px;margin-left: 140px;height: 240px;box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    <img src="{{ i.prod.product_image.url }}" class="img-fluid rounded-start" alt="...">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ i.prod.product_name }}</h5>
+                      <p class="card-text"><span style="float:left;">QUANTITY&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;{{ i.quantity }}</span><br><hr>
+                      <span style="float:rightt;">WEIGHT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ i.wght.weight}}</span><br><hr>
+                      <span style="float:rightt;">PRICE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;{{ i.prod.price}}/-</span></p>
+                      <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal">
+                        REMOVE
+                      </button>
+                    </div>
+                  </div>
+    </div> 
+          
+   </div>
+     
+</div> 
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">REMOVE</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body"><br>
+          <center>
+        <img src="/static/image/del.webp" alt="" id="img1"><br>
+        <h3><b>Are you sure?</b></h3>
+         <p>Do you really want to delete there records?</p></center>
+         
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+         
+          <a href="{% url 'delete_crt_prdt' i.id %} " class="btn btn-danger" style="width: 90px;"  role="button">CONFIRM</a>
+        <button type="button" class="btn btn-info" data-dismiss="modal">CLOSE</button>
+      </div>
+
+    </div>
+  </div>
+</div> 
+{% endfor %}
+<button type="button" class="btn btn-outline-success" style="float: right;background-color: orange;color: black;"> PLACE ORDER</button>
+
+{% endblock %}

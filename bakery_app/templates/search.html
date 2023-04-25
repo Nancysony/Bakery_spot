@@ -1,0 +1,15 @@
+{% extends 'main_base.html' %}
+{% block content %}
+{% load static %}
+<form action="" method="get" enctype="multipart/form-data" >
+{% csrf_token %}
+{% for i in pr %}
+<div class="container">
+    <center>
+    <h1>{{ i.product_name }}</h1><br>
+    <img src="{{ i.product_image.url }}" style="width:60vw;height:250px;"><br>
+    <p>{{i.description}}</p></center>
+</div><br>
+{% endfor %}
+</form>
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends 'user/user_base.html' %}
+{% block content %}
+{% load static %}
+<center>
+    <br><div class="container" style="box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);">
+        <div class="row">
+            <div class="col-sm-6">
+                <img src="{{prod.product_image.url}}" style="height:400px; width:400px;">
+            </div>
+            <div class="col-sm-6">
+                <h2 style="text-align: center;">{{ prod.product_name }}</h2>
+                <p>{{ prod.description }}</p>
+                <table>
+                    <tr style="font-size: 30px;">
+                        <td >PRICE   :    
+                        
+                            <label ><b>{{ prod.price}}/-</b></label></td>
+                    </tr>       
+                </table><br><br>
+                <a href="{% url 'edit_prod' prod.id %}" class="btn btn-success btn-sm" style="width: 90px;">UPDATE</a>&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal">
+                    DELETE
+                </button>
+                &nbsp;&nbsp;&nbsp;
+                <a href="{% url 'add_multi_image' prod.id %}" class="btn btn-info btn-sm"style="width: 100px;">MULTIPLE IMAGE</a>
+                <br><br><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="PREVIOUS PAGE" class="btn btn-dark btn-sm"onclick="javascript:history.go(-1);"id="d">
+ 
+            </div>
+
+        </div>
+    </div><br>
+    {% for i in prod.multi_image_tbl_set.all %}
+    <img src="{{ i.multi_image.url }}" alt="" class="card-img-top" style="height:200px; width:200px;">
+    
+    {% empty %}
+    <h2> No OTHER Images available right now..</h2>
+    {% endfor %}
+</center>
+
+
+
+
+
+
+
+
+
+
+
+<div class="containser m-8">
+    
+   <br>
+    
+    
+    </div>
+ 
+  
+  <!-- The Modal -->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">DELETE</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body"><br>
+            <center>
+          <img src="/static/image/del.webp" alt="" id="img1"><br>
+          <h3><b>Are you sure?</b></h3>
+           <p>Do you really want to delete there records?</p></center>
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+            <a href="{% url 'delete_prdt' prod.id %}" class="btn btn-danger" style="width: 90px;"  role="button">CONFIRM</a>
+          <button type="button" class="btn btn-info" data-dismiss="modal">CLOSE</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+  
+  
+{% endblock %}

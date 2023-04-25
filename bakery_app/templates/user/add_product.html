@@ -1,0 +1,51 @@
+{% extends 'user/user_base.html' %}
+{% block content %}
+{% load static %}
+<BODY style="background-color: whitesmoke">
+<br><div class="container" style="width:40vw;height: 50vw;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+            <br><h2 style="text-align: center;">ADD PRODUCT DETAILS</h2>
+            <br>
+            <form action="{% url 'add_product' %}" method="post" enctype="multipart/form-data" >
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="name"><strong> PRODUCT NAME :</strong></label>
+                <input type="text" class="form-control" id="name" placeholder=" Enter product name" name="pname" required>
+            </div>
+            <div class="form-group">
+                <label for="name"><strong>DESCRIPTION :</strong></label>
+                <input type="text" class="form-control" id="name" placeholder=" Enter about the product" name="desc" required>
+            </div>
+            <div class="form-group">
+                <label for="name"><strong>CATEGORY :</strong></label>
+                <select class="form-control" name="sel">
+                    {% for i in category %}
+                        <option value="{{ i.id }}">{{ i.category_name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="name"><strong>PRODUCT PRICE :</strong></label>
+                <input type="number" class="form-control" id="name" placeholder=" Enter product price" name="price" required>
+            </div>
+            <div class="form-group">
+                <label for="name"><strong>STOCK :</strong></label>
+                <input type="number" class="form-control" id="name" placeholder=" Enter available stock" name="stock" required>
+            </div>
+            <div class="form-group">
+                <label for="img"><strong> IMAGE:</strong></label>
+                <input type="file" name="file" class="form-control mt-3" accept="image/*" style="border: none;">
+            </div>
+            <button type="submit" class="btn btn-outline-success " style="margin-left: 40%;"  id="save">SAVE PRODUCT</button>  
+            </form>
+            
+</div><br>
+<script>
+    document.getElementById('save').addEventListener('click', function () {
+    Swal.fire(
+        'SUCCESS',
+        'Product details has been successfully submitted...'
+    )
+});
+</script>
+</BODY>
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends 'user/user_base.html' %}
+{% block content %}
+{% load static %}
+<body style="background-color: rgb(230, 166, 230);">
+<div class="container-fluid" style="width:500px;margin-top:15px;">
+    <h1 style="text-align: center;">EDIT PRODUCT  DETAILS</h1>
+    <center>
+<form method="post" action="/edit_product/{{ pro.pk }}"   enctype="multipart/form-data">
+    {% csrf_token %}
+    
+        <table id="table1" class="table table-info table-hover">
+            <tr>
+                <td>
+                    <label id="l2">Enter product name:&nbsp;&nbsp;&nbsp;</label>
+                </td>
+                <td>
+                    <input type="text" name="pname" value="{{ pro.product_name }}">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label id="l2">Enter description:</label>
+                </td>
+                <td>
+                    <input type="text" name="desc" value="{{ pro.description }}">
+                </td>
+            </tr>
+            <tr><td>
+                    <label id="l2">Enter Category:</label>
+                </td>
+                <td>
+                    <select class="form-control" name="cname">
+                        {% for i in cat %}
+                        <option {% if i.category_name == pro.catg.category_name  %} selected="selected" {% endif %} name="cname" value="{{ i.id }}">{{ i.category_name}}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label id="l2">Enter price:</label>
+                </td>
+                <td>
+                    <input type="text" name="price" value="{{ pro.price }}">
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <label id="l2">Enter stock:</label>
+                </td>
+                <td>
+                    <input type="tel" name="stock" value="{{ pro.stock}}">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label id="l2">Image:</label>
+                </td>
+                {% if p.product_image == '/static/image/default.jpg' %}
+                    <td>
+                        <img src="{% static 'image/default.jpg' %}" style="height: 120px;width:100px;"class="img-fluid"><br>
+                        <input type="file" name="file" id="ts" class="form-control " accept="image/*"  >
+                    </td>
+                {% else %}
+                    <td>
+                        <img src="{{ pro.product_image.url }}" style="height: 120px;width:100px;" class="img-fluid"><br>
+                        <input type="file" name="file" id="ts" class="form-control" accept="image/*" value="{{ pro.product_image.url }}" >
+                    </td>
+                {% endif %} 
+            </tr><br>
+            <tr style="text-align: center;">
+                <td colspan="2"><input type="button" value="PREVIOUS PAGE" class="btn btn-info"onclick="javascript:history.go(-1);"id="d">&nbsp;&nbsp;<button type="submit" id="b" class="btn btn-success">UPDATE</button></td></tr>
+        </table><br>
+        
+    
+</form>
+</center>
+
+</div>
+</body>
+{% endblock %}

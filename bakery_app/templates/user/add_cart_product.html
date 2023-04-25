@@ -1,0 +1,37 @@
+{% extends 'user/user_base.html' %}
+{% block content %}
+{% load static %}
+<form action="/cart/{{ pro.pk }}" method="post" enctype="multipart/form-data" >
+    {% csrf_token %}
+<br><br>
+<div class="container" style="width:750px;height: 300px;box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+    <div class="card mb-4" style="max-width: 540px"></div>
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img src="{{ pro.product_image.url }}" alt="" class="img-fluid" style="float: right;">
+        </div>
+        <div class="col-md-8">
+            <h1>{{ pro.product_name }}</h1><br>
+            <label>select weight</label>
+            <select class="form-control" name="sel">
+            {% for i in wet %}
+                <option value="{{ i.id }}">{{ i.weight}}</option>
+            {% endfor %}
+            </select>
+            <label>QUANTITY</label>
+            <input type="number" name="qua" style="width: 25vw;"><br><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button  class="btn btn-outline-success btn-sm m-1" style="width: 110px;">ADD TO CART</button>
+
+        </div>
+    </div>
+</div>
+</form>
+
+
+
+
+
+    
+    
+    
+{% endblock %}

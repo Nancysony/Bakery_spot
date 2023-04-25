@@ -1,0 +1,138 @@
+{% extends 'main_base.html' %}
+{% block content %}
+{% load static %}
+<div id="demo" class="carousel slide" data-ride="carousel">
+    <ul class="carousel-indicators">
+      <li data-target="#demo" data-slide-to="0" class="active"></li>
+      <li data-target="#demo" data-slide-to="1"></li>
+      <li data-target="#demo" data-slide-to="2"></li>
+      
+    </ul>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="/static/image/sb0.jpg" alt="Los Angeles" class="img-fluid" >
+        </div>
+        <div class="carousel-item">
+          <img src="/static/image/sb1.jpg" alt="Los Angeles" class="img-fluid" >
+        </div>
+        <div class="carousel-item">
+          <img src="/static/image/sb2.jpg" alt="Los Angeles" class="img-fluid" >
+        </div>
+      <a class="carousel-control-prev" href="#demo" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </a>
+      <a class="carousel-control-next" href="#demo" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </a>
+  </div> 
+  <div class="container-fluid"  >
+    <br><h1 style="text-align: center;" class="display-4"><b><i>Highlighted category</i></b></h1><br>
+    <div class="row">
+  
+      <div class="col " >
+        <div class="card" style="border: none;">
+          <img class="card-img-top img-fluid" src="/static/image/veg_puff.jpg" alt="Card image" style="width:100%">
+          <div class="card-body text-center" >
+          
+            <button type="button"  style="height: 40px; width: 150px;background-color: palevioletred; border: none;"><a href="cat3.html"style="color: black;"><b>SNACKS</b></a></button>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card" style="border: none;">
+          <img class="card-img-top img-fluid" src="/static/image/sweets_cat.jpg" alt="Card image" style="width:100%">
+          <div class="card-body text-center">
+          
+            <button type="button"  style="height: 40px; width: 150px;background-color: palevioletred; border: none;"><a href="cat1.html"style="color: black;"><b>SWEETS</b></a></button>
+          </div>
+        </div>
+          
+      </div>
+      <div class="col">
+        <div class="card" style="border: none;">
+          <img class="card-img-top img-fluid" src="/static/image/cake_cat.jpg" alt="Card image" style="width:100%">
+          <div class="card-body text-center">
+            <button type="button"  style="height: 40px; width: 150px;background-color: palevioletred; border: none;"><a href="cat2.html"style="color: black;"><b>CAKE</b></a></button>
+          </div>
+        </div>  
+      </div>
+      
+    </div>  
+  </div><br>
+  <div class="container-fluid">
+    <h2 style="text-align: center;color: orangered;" class="display-4"><b>BAKE ITEMS AVAILABLE TO PURCHASE</b></h2><br>
+    <div class="row">
+      
+        <div class="col-sm-3">
+            <div class="card">
+                <div class="card-header">
+                  <b>BAKE ITEMS</b>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <a href="{% url 'home' %}">
+                            All
+                        </a>
+                      </li>
+
+                    {% for c in ctg %}
+                    <li class="list-group-item">
+                      <a href="{% url 'home' %}?category={{ c.category_name }}">
+                          {{ c.category_name }}
+                      </a>
+                    </li>
+                    {% endfor %}
+
+                  </ul>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <div class="row">
+
+                {% for i in pro %}
+                <div class="col-md-4">
+                    <div class="card" >
+                        <center><img class="images-sty " src="{{ i.product_image.url }}"alt="Bag image" style="width: 200px;height: 230px;"></center>
+                        <div class="card-body">
+                          <p class="card-text">
+                              <strong><i style="float: left;">{{i.product_name}}</i></strong>
+                              <span style="float:right;"> price  : {{ i.price }}/-</span>
+                          </p>
+                        </div>
+                        
+                        <a href="{% url 'user_login'  %}" class="btn btn-outline-dark  m-1" style="background-color: green;color: black;"><b> ADD TO CART </b></a>
+                 
+                      </div><br><br>
+                      </div>
+                
+                {% endfor %}
+
+              </div>
+        </div>
+    </div>
+</div>
+<!-- <div class="container">
+  <h2 style="text-align: center;color: orangered;" class="display-4"><b>NEW ARRIVALS</b></h2><br>
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="card" style="text-align:center;border: none;">
+        <h3 class="card-title"><strong> BUTTERSCOTCH CAKE</strong></h3>
+        <center><img class="card-img-top img-fluid" src="/static/image/BUTTER1.jfif" alt="Card image" style="width:300px;height: 250px;"></center>
+      </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card" style="text-align:center;border: none;">
+          <h3 class="card-title"><strong> MANGO FOREST CAKE</strong></h3>
+          <center><img class="card-img-top img-fluid" src="/static/image/mango.jpg" alt="Card image" style="width:300px;height: 250px;"></center>
+        </div>
+      </div>
+        <div class="col-sm-4">
+          <div class="card" style="text-align:center;border: none;">
+            <h3 class="card-title"><strong> CHOCLATE CAKE</strong></h3>
+            <center><img class="card-img-top img-fluid" src="/static/image/cho.webp" alt="Card image" style="width:300px;height: 250px;"></center>
+          </div>
+        </div>
+    </div>
+  </div> -->
+  
+{% endblock %}

@@ -1,0 +1,15 @@
+#a1{
+    color:orange;
+}
+#a1:hover{
+    color: greenyellow;
+}
+#tbody tr:hover{
+    background-color:orange;
+}
+
+#img1{
+    width: 100px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}

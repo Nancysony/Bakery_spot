@@ -1,0 +1,93 @@
+
+{% extends 'main_base.html' %}
+{% load static %}
+{% block content %}
+
+    <body style="background-color: rgb(204, 165, 241);">
+        <br><h2 style="text-align: CENTER;">SIGN UP HERE!!!</h2><br>
+        <div class="container" style=" height: 960px; width: 400px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" >
+                
+            <br><form method="post" action="{% url 'add_customer' %}"  enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="name">FIRST NAME :</label>
+                    <input type="text" class="form-control" id="name" placeholder=" Enter your firstname" name="fname" required>
+                    <div class="valid-feedback">Valid.</div>
+                    <div class="invalid-feedback">Please fill out this field.</div>
+                </div>
+                <div class="form-group">
+                    <label for="name">LAST NAME :</label>
+                    <input type="text" class="form-control" id="name" placeholder=" Enter your lastname" name="lname" required>
+                    <div class="valid-feedback">Valid.</div>
+                    <div class="invalid-feedback">Please fill out this field.</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">EMAIL :</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter your Email ID" name="email" required>
+                    <div class="valid-feedback">Valid.</div>
+                    <div class="invalid-feedback">Please fill out this field.</div>
+                </div>
+            <div class="form-group">
+                <label for="username">USERNAME :</label>
+                <input type="text" class="form-control" id="uname" placeholder="Enter your username" name="uname" required>
+                <div class="valid-feedback">Valid.</div>
+                <div class="invalid-feedback">Please fill out this field.</div>
+            </div>
+            <div class="form-group">
+                <label for="pwd">PASSWORD:</label>
+                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd" required>
+                <div class="valid-feedback">Valid.</div>
+                <div class="invalid-feedback">Please fill out this field.</div>
+            </div>
+            <div class="form-group">
+                <label for="Cpwd"> CONFIRM PASSWORD:</label>
+                <input type="password" class="form-control" id="pwd" placeholder="Re-Enter password" name="cpswd" required>
+                <div class="valid-feedback">Valid.</div>
+                <div class="invalid-feedback">Please fill out this field.</div>
+            </div>
+            <div class="form-group">
+                <label for="GENDER"> GENDER:</label><br>
+                <input type="radio" id="male" name="gender" value="MALE" >
+                <label id="l2">Male</label>
+                <input type="radio" id="female" name="gender" value="FEMALE">
+                <label id="l2">Female</label>
+                <input type="radio" id="OTHER" name="gender" value="OTHERS">
+                <label id="l2">Others</label>
+                <div class="valid-feedback">Valid.</div>
+                <div class="invalid-feedback">Please fill out this field.</div>
+            </div>
+            <div class="form-group">
+                <label for="pwd"> CONTACT NUMBER:</label>
+                <input type="number" class="form-control" id="pwd" placeholder="Enter your Contact number" name="mob" required>
+                <div class="valid-feedback" class="form-control">Valid.</div>
+                <div class="invalid-feedback" class="form-control">Please fill out this field.</div>
+            </div>
+            <div class="form-group">
+                <label for="img"> IMAGE:</label>
+                <input type="file" name="file" class="form-control mt-3" accept="image/*">
+                <div class="valid-feedback">Valid.</div>
+                <div class="invalid-feedback">Please fill out this field.</div>
+            </div><br><br>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="checkbox" name="remember" required>Accept the terms and conditions
+                  <div class="valid-feedback">Valid.</div>
+                  <div class="invalid-feedback">Check this checkbox to continue.</div>
+                </label>
+              </div>
+            <center>
+                <button type="submit" class="btn btn-success text-center" id="btn">REGISTER</button>
+            </center>
+        </form>
+        </div><br>
+        <script>
+            document.getElementById('btn').addEventListener('click', function () {
+            Swal.fire(
+                'SUCCESS',
+                ' successfully Registered...'
+            )
+        });
+        </script>
+    </body>
+{% endblock %}

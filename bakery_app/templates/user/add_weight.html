@@ -1,0 +1,42 @@
+{% extends 'user/user_base.html' %}
+{% block content %}
+{% load static %}
+<BODY style="background-color: whitesmoke">
+<div class="container" >
+    <br><div class="row">
+        <br><div class="col-sm-3" style="box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+            <br><h2>&nbsp;&nbsp;&nbsp;ADD WEIGHT</h2>
+            <br>
+            <form action="{% url 'add_weight' %}" method="post" >
+            {% csrf_token %}
+                <input type="text" name="wet" class="form-control" placeholder="Enter weight"><br>
+                <button type="submit" class="btn btn-outline-info" style="margin-left: 40%;" >Submit</button>  
+            </form><br>
+        </div>
+        <div class="col-sm-1">   
+        </div>
+        <div class="col-sm-8">
+            <form action="{% url 'view_wt' %}" method="post" >
+            <br><h1 style="text-align: center;">WEIGHT LIST</h1><br>
+            <table class="table  ">
+                <thead>
+                    <tr style="background-color:rgb(110, 20, 20) ;color: white;text-align: center;">
+                        <th>WEIGHT</th>
+                        <th>ACTION</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for i in wt %}
+                    <tr style="text-align: center;">
+                        <td>{{ i.weight }}</td>
+                        <td><a href="{% url 'delete_wt' i.id %}">DELETE</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            </form>
+        </div>
+    </div>
+</div>
+</BODY>
+{% endblock %}
