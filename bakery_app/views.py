@@ -181,7 +181,7 @@ def delete_wt(request,pk):
 def delete_prdt(request,pk):
     pd=product_tbl.objects.filter(id=pk)
     pd.delete()
-    return redirect('user_home')
+    return redirect('cust_home')
 
 @login_required(login_url='user_login')
 
@@ -228,7 +228,7 @@ def add_multi_image(request,pk):
             m_img= multi_image_tbl(prodt=pro,multi_image=img)
             m_img.save()
             print("save")
-        return redirect('user_home')
+        return redirect('cust_home')
     return render(request,'user/multi_add_image.html')
 
 @login_required(login_url='user_login')
@@ -269,7 +269,7 @@ def edit_product(request,pk):
             else:
                 proo.product_image = request.FILES['file']            
         proo.save()
-        return redirect('user_home')
+        return redirect('cust_home')
     return render(request,'user/edit_product.html')
 
 def confirm(request,pk):

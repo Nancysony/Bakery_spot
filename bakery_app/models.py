@@ -53,11 +53,3 @@ class multi_image_tbl(models.Model):
     def __str__(self):
         return self.multi_image  
 
-class mail_tbl(models.Model):
-    Name =models.CharField(max_length=225)
-    subject=models.CharField(max_length=225)
-    message=models.CharField(max_length=225)
-    email = models.EmailField()
-
-    def __str__(self):
-        return self.Name  
